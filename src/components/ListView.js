@@ -36,7 +36,7 @@ ListView.propTypes = {
 
 ListView.defaultProps = {
   error: null,
-  events: false,
+  events: [],
 };
 
 export default ListView;

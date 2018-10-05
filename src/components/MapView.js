@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+
+import { eventPropType } from "../utils/propTypes";
 
 class MapView extends Component {
   constructor(props) {
@@ -18,6 +21,7 @@ class MapView extends Component {
         container: this.mapContainer,
         style: "mapbox://styles/mapbox/streets-v9"
       });
+      this.setMap();
     } else {
       this.setState({
         error: true,
@@ -25,9 +29,38 @@ class MapView extends Component {
     }
   }
 
+  componentDidUpdate() {
+    this.setMap();
+  }
+
   componentWillUnmount() {
     if (this.map) {
       this.map.remove();
+    }
+  }
+
+  setMap = () => {
+    const { mapboxgl } = window;
+
+    if (this.props.events.length) {
+      // filter events for those with locations set
+      const locs = this.props.events.filter(event => (event.location && event.location.location));
+      // get the coordinates of each location
+      const coordinates = locs.map(e => ([
+        e.location.location.longitude,
+        e.location.location.latitude,
+      ]));
+
+      // send those coordinates to the map
+      new mapboxgl.LngLatBounds(coordinates);
+      // var v2 = new mapboxgl.LngLatBounds([-73.9580807, 40.6663495])
+      locs.forEach(l => {
+        const { location } = l.location;
+        const coor = [location.longitude, location.latitude];
+        new mapboxgl.Marker()
+          .setLngLat(coor)
+          .addTo(this.map);
+      })
     }
   }
 
@@ -48,5 +81,13 @@ class MapView extends Component {
     );
   }
 }
+
+MapView.propTypes = {
+  events: PropTypes.arrayOf(eventPropType),
+};
+
+MapView.defaultProps = {
+  events: [],
+};
 
 export default MapView;
