@@ -1,5 +1,26 @@
 import PropTypes from "prop-types";
 
+export const contactPropType = PropTypes.shape({
+  name: PropTypes.string,
+  email_adddress: PropTypes.string,
+  phone_number: PropTypes.string,
+});
+
+export const locationPropType = PropTypes.shape({
+  address_lines: PropTypes.arrayOf(PropTypes.string),
+  congressional_district: PropTypes.string,
+  locality: PropTypes.string,
+  location: PropTypes.shape({
+    latitude: PropTypes.num,
+    longitude: PropTypes.num,
+  }),
+  postal_code: PropTypes.string,
+  region: PropTypes.string,
+  state_leg_district: PropTypes.string,
+  state_senate_district: PropTypes.string,
+  venue: PropTypes.string,
+});
+
 export const sponsorPropType = PropTypes.shape({
   candidate_name: PropTypes.string,
   created_date: PropTypes.num,
@@ -16,21 +37,6 @@ export const sponsorPropType = PropTypes.shape({
   state: PropTypes.string,
 });
 
-export const locationPropType = PropTypes.shape({
-  address_lines: PropTypes.arrayOf(PropTypes.string),
-  // congressional_district: null
-  locality: PropTypes.string,
-  location: PropTypes.shape({
-    latitude: PropTypes.num,
-    longitude: PropTypes.num,
-  }),
-  postal_code: PropTypes.string,
-  region: PropTypes.string,
-  // state_leg_district: null
-  // state_senate_district: null
-  venue: PropTypes.string,
-});
-
 export const timeslotPropType = PropTypes.shape({
   end_date: PropTypes.num,
   id: PropTypes.num,
@@ -39,12 +45,12 @@ export const timeslotPropType = PropTypes.shape({
 
 export const eventPropType = PropTypes.shape({
   browser_url: PropTypes.string,
-  // contact: PropTypes.string,
+  contact: contactPropType,
   created_date: PropTypes.num,
   description: PropTypes.string,
   event_type: PropTypes.string,
   featured_image_url: PropTypes.string,
-  // high_priority: PropTypes.string,
+  high_priority: PropTypes.bool,
   id: PropTypes.num,
   location: locationPropType,
   modified_date: PropTypes.num,
