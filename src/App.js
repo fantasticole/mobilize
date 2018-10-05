@@ -6,10 +6,18 @@ import ListView from "./components/ListView";
 import "./styles/App.css";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      events: [],
+      error: null,
+    };
+  }
+
   componentDidMount() {
     this.getEvents();
   }
-
 
   // organization_id: One or more Organization IDs to filter to. If multiple, should be supplied as multiple query params, e.g., organization_id=1&organization_id=2, etc.
   // updated_since: Unix timestamp to filter by Events’ modified_date
@@ -21,23 +29,31 @@ class App extends Component {
     const options = {
       method: "GET",
       zipcode: 11225,
+      // organization_id
+      // updated_since
+      // timeslot_start
+      // timeslot_end
+      // zipcode
+      // max_dist
     };
 
     fetch("https://events.mobilizeamerica.io/api/v1/events", options)
       .then(response => response.json())
       .then((res) => {
-        console.log({ res });
+        this.setState({ events: res.data });
       })
-      .catch((err) => {
-        console.log({ err });
+      .catch((error) => {
+        this.setState({ error });
       });
   }
 
   render() {
+    const { events, error } = this.state;
+
     return (
       <div className="App">
-        <MapView />
-        <ListView />
+        <MapView events={events} />
+        <ListView error={error} events={events}/>
       </div>
     );
   }
