@@ -6,7 +6,20 @@ import ListView from "./components/ListView";
 import "./styles/App.css";
 
 class App extends Component {
-  componentWillMount() {}
+  componentDidMount() {
+    this.getEvents();
+  }
+
+  getEvents = () => {
+    fetch("https://events.mobilizeamerica.io/api/v1/events")
+      .then(response => response.json())
+      .then((res) => {
+        console.log({ res });
+      })
+      .catch((err) => {
+        console.log({ err });
+      });
+  }
 
   render() {
     return (
