@@ -9,19 +9,45 @@
 }
 
 .eventList {
-  padding: 15px;
+  padding: 0;
 }
 
 .eventListItem {
-  margin: 5px;
+  margin-right: 5px;
+  position: relative;
+  padding: 0;
+  padding-right: 15px;
+  display: flex;
 
-  img {
-    height: 50px;
-    width: auto;
+  &:nth-child(2n) {
+    background-color: #eee;
   }
 
-  & + .eventListItem {
-    border-top: 1px solid black;
+  &:hover {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+  }
+
+  a {
+    display: inline-block;
+  }
+
+  h3 {
+    margin-top: 5px;
+  }
+
+  .imgCont {
+    width: 100px;
+    min-width: 100px;
+
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  .eventInfo {
+    margin-left: 10px;
   }
 }
 
