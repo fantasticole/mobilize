@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       events: [],
       error: null,
+      zipcode: 10001,
     };
   }
 
@@ -19,20 +20,20 @@ class App extends Component {
     this.getEvents();
   }
 
-  // organization_id: One or more Organization IDs to filter to. If multiple, should be supplied as multiple query params, e.g., organization_id=1&organization_id=2, etc.
-  // updated_since: Unix timestamp to filter by Events’ modified_date
-  // timeslot_start: Comparison to filter by Events' Timeslots' start date. Will only return Timeslots on those Events that meet the filter conditions
-  // timeslot_end: Comparison to filter by Events' Timeslots' end date. Will only return Timeslots on those Events that meet the filter conditions
-  // zipcode: Zipcode to filter by Events' Locations' postal code. If present, will return Events sorted by distance from zipcode. When zipcode is provided, virtual events will not be returned.
-  // max_dist: Maximum distance (in miles) to filter by Events' Locations' distance from provided zipcode.
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    })
+  }
+
   getEvents = () => {
     const params = {
-      zipcode: 11225,
+      zipcode: this.state.zipcode,
       // organization_id
       // updated_since
       // timeslot_start
       // timeslot_end
-      // zipcode
       // max_dist
     };
 
@@ -42,7 +43,10 @@ class App extends Component {
     fetch(url)
       .then(response => response.json())
       .then((res) => {
-        this.setState({ events: res.data });
+        this.setState({
+          events: res.data,
+          error: null,
+        });
       })
       .catch((error) => {
         this.setState({ error });
@@ -54,7 +58,12 @@ class App extends Component {
 
     return (
       <div className="App">
-        <ListView error={error} events={events}/>
+        <ListView
+          error={error}
+          events={events}
+          getEvents={this.getEvents}
+          updateZip={this.handleChange}
+        />
         <MapView events={events} />
       </div>
     );

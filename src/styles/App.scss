@@ -8,6 +8,30 @@
   overflow: scroll;
 }
 
+.form {
+  background-color: navy;
+  text-align: center;
+
+  p {
+    display: inline-block;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  input,
+  button {
+    height: 1.6em;
+    margin-left: 5px;
+  }
+}
+
+.error {
+  background-color: rgba(255, 0, 0, 0.5);
+  border: 1px solid red;
+  padding: 10px 5px;
+  margin: 0;
+}
+
 .eventList {
   padding: 0;
 }
@@ -18,9 +42,11 @@
   padding: 0;
   padding-right: 15px;
   display: flex;
+  margin: 0;
 
   &:nth-child(2n) {
     background-color: #eee;
+    margin: 2px 0;
   }
 
   &:hover {
