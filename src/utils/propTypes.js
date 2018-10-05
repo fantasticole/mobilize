@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export const sponsorPropType = {
+export const sponsorPropType = PropTypes.shape({
   candidate_name: PropTypes.string,
   created_date: PropTypes.num,
   district: PropTypes.string,
@@ -14,9 +14,9 @@ export const sponsorPropType = {
   race_type: PropTypes.string,
   slug: PropTypes.string,
   state: PropTypes.string,
-};
+});
 
-export const locationPropType = {
+export const locationPropType = PropTypes.shape({
   address_lines: PropTypes.arrayOf(PropTypes.string),
   // congressional_district: null
   locality: PropTypes.string,
@@ -29,15 +29,15 @@ export const locationPropType = {
   // state_leg_district: null
   // state_senate_district: null
   venue: PropTypes.string,
-};
+});
 
-export const timeslotPropType = {
+export const timeslotPropType = PropTypes.shape({
   end_date: PropTypes.num,
   id: PropTypes.num,
   start_date: PropTypes.num,
-};
+});
 
-export const eventPropType = {
+export const eventPropType = PropTypes.shape({
   browser_url: PropTypes.string,
   // contact: PropTypes.string,
   created_date: PropTypes.num,
@@ -53,4 +53,4 @@ export const eventPropType = {
   timeslots: PropTypes.arrayOf(timeslotPropType),
   timezone: PropTypes.string,
   title: PropTypes.string,
-}
+});
