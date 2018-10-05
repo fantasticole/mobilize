@@ -151,3 +151,9 @@ it("renders an event", () => {
   ReactDOM.render(<Event event={events[0]} />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
+
+it("renders a map", () => {
+  const div = document.createElement("div");
+  ReactDOM.render(<MapView events={events} />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});

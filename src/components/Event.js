@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import { eventPropType } from "../utils/propTypes";
+import { formatDate } from "../utils/formatDate";
 
 class Event extends Component {
   constructor(props) {
@@ -38,11 +39,11 @@ class Event extends Component {
             </div>
             <div className="eventDetail">
               <p className="label">Created: </p>
-              <p className="detail">{event.created_date}</p>
+              <p className="detail">{formatDate(event.created_date)}</p>
             </div>
             <div className="eventDetail">
               <p className="label">Updated: </p>
-              <p className="detail">{event.modified_date}</p>
+              <p className="detail">{formatDate(event.modified_date)}</p>
             </div>
           </div>
         </div>
