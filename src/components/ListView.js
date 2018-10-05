@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import Event from "./Event";
+
 import { eventPropType } from "../utils/propTypes";
 
   // contact: PropTypes.????,
@@ -11,34 +13,14 @@ import { eventPropType } from "../utils/propTypes";
 
 class ListView extends Component {
   render() {
+    const { events } = this.props;
+
     return (
       <div className="events">
         <h1>events:</h1>
-        <ul className="eventList">
-          {this.props.events.map(event => (
-            <li className="eventListItem" key={event.id}>
-              {event.featured_image_url && (<img src={event.featured_image_url} alt={event.summary} />)}
-              <a href={event.browser_url}>
-                <h3>{event.title}</h3>
-                <p>({event.timezone})</p>
-              </a>
-              <p className="eventDesc">{event.description}</p>
-              <p className="eventSum">{event.summary}</p>
-              <div className="eventDetail">
-                <p className="label">Type: </p>
-                <p className="detail">{event.event_type}</p>
-              </div>
-              <div className="eventDetail">
-                <p className="label">Created: </p>
-                <p className="detail">{event.created_date}</p>
-              </div>
-              <div className="eventDetail">
-                <p className="label">Updated: </p>
-                <p className="detail">{event.modified_date}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <div className="eventList">
+          {events.map(event => (<Event event={event} key={event.id}/>))}
+        </div>
       </div>
     );
   }

@@ -4,16 +4,24 @@
 
 .events {
   flex: 3;
+  height: 100vw;
+  overflow: scroll;
 }
 
 .eventList {
-  list-style-type: none;
+  padding: 15px;
 }
 
 .eventListItem {
+  margin: 5px;
+
   img {
     height: 50px;
     width: auto;
+  }
+
+  & + .eventListItem {
+    border-top: 1px solid black;
   }
 }
 
@@ -39,4 +47,5 @@
 .map {
   flex: 2;
   background-color: #eee;
+  height: 100vw;
 }
