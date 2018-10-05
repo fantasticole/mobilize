@@ -75,6 +75,14 @@
   .eventInfo {
     margin-left: 10px;
   }
+
+  .timeslot {
+    border: 1px solid black;
+    border-radius: 1px;
+    padding: 2px;
+    display: inline-block;
+    line-height: 0.9em;
+  }
 }
 
 .eventDesc {
@@ -84,6 +92,8 @@
 }
 
 .eventDetail {
+  display: flex;
+  font-size: 0.8em;
 }
 
 .label {

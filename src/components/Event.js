@@ -45,6 +45,14 @@ class Event extends Component {
               <p className="label">Updated: </p>
               <p className="detail">{formatDate(event.modified_date)}</p>
             </div>
+            <div className="eventDetail">
+              <p className="label">Time slots: </p>
+              {event.timeslots.map(slot => (
+                <p className="timeslot" key={slot.id}>
+                  {formatDate(slot.start_date)} - {formatDate(slot.end_date)}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
       );
