@@ -26,8 +26,7 @@ class App extends Component {
   // zipcode: Zipcode to filter by Events' Locations' postal code. If present, will return Events sorted by distance from zipcode. When zipcode is provided, virtual events will not be returned.
   // max_dist: Maximum distance (in miles) to filter by Events' Locations' distance from provided zipcode.
   getEvents = () => {
-    const options = {
-      method: "GET",
+    const params = {
       zipcode: 11225,
       // organization_id
       // updated_since
@@ -37,7 +36,10 @@ class App extends Component {
       // max_dist
     };
 
-    fetch("https://events.mobilizeamerica.io/api/v1/events", options)
+    const url = new URL("https://events.mobilizeamerica.io/api/v1/events");
+    url.search = new URLSearchParams(params);
+
+    fetch(url)
       .then(response => response.json())
       .then((res) => {
         this.setState({ events: res.data });

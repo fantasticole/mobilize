@@ -13,11 +13,12 @@ import { eventPropType } from "../utils/propTypes";
 
 class ListView extends Component {
   render() {
-    const { events } = this.props;
+    const { events, error } = this.props;
 
     return (
       <div className="events">
         <h1>events:</h1>
+        {error && <p className="error">{error.message}</p>}
         <div className="eventList">
           {events.map(event => (<Event event={event} key={event.id}/>))}
         </div>
