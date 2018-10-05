@@ -10,9 +10,11 @@
   list-style-type: none;
 }
 
-.eventListItem img {
-  height: 50px;
-  width: auto;
+.eventListItem {
+  img {
+    height: 50px;
+    width: auto;
+  }
 }
 
 .eventDesc {

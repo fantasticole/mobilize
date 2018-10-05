@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import MapView from "./components/MapView";
 import ListView from "./components/ListView";
 
-import "./styles/App.css";
+import "./styles/App.scss";
 
 class App extends Component {
   constructor(props) {
@@ -52,8 +52,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <MapView events={events} />
         <ListView error={error} events={events}/>
+        <MapView events={events} />
       </div>
     );
   }
