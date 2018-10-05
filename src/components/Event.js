@@ -61,7 +61,7 @@ class Event extends Component {
 }
 
 Event.propTypes = {
-  events: eventPropType.isRequired,
+  event: eventPropType.isRequired,
 };
 
 export default Event;
